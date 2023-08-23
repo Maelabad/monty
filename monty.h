@@ -66,5 +66,14 @@ void _pall(stack_t **stack, unsigned int line_number);
 void _push(stack_t **head, unsigned int counter);
 
 void _pint(stack_t **head, unsigned int counter);
+void _pop(stack_t **stack, unsigned int line_number);
+
+
+void handle_error(int errno, char *opcode, unsigned int line, char *buff);
+void handle_cerror(int errno, char *opcode, unsigned int line);
+void handle_uerror(int errno, unsigned int line);
+void handle_more_uerror(int errno, unsigned int line);
+
+void frees_stack(stack_t **head);
 
 #endif
