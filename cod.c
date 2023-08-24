@@ -71,15 +71,16 @@ void pall(stack_t **stack, unsigned int line_number)
 /**
  * pint - prints the top
  * @head: stack head
- * @counter: line_number
+ * @line_number: line_number
  * Return: no return
 */
-void pint(stack_t **head, unsigned int counter)
+void pint(stack_t **stack, unsigned int line_number)
 {
-	if (*head == NULL)
+	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty\n", counter);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", (*head)->n);
+
+	printf("%d\n", (*stack)->n);
 }
