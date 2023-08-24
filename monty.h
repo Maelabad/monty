@@ -61,4 +61,11 @@ void process_file(const char *filename, instruction_t *instructions);
 void execute_instructions(FILE *file, stack_t **stack, instruction_t *ins);
 
 
+void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
+void stack_format(stack_t **stack, unsigned int line_number);
+void queue_format(stack_t **stack, unsigned int line_number);
+
 #endif

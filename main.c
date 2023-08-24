@@ -20,6 +20,10 @@ int main(int argc, char *argv[])
 		{"div", div_op},
 		{"mul", mul},
 		{"mod", mod},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL}
 	};
 
@@ -64,35 +68,35 @@ void process_file(const char *filename, instruction_t *instructions)
  * execute_instructions - Execute the instructions
  * @file: The stream
  * @stack: The stack
- * @instructions: ...
+ * @ins: ...
  * Return: EXIT_SUCCESS or EXIT_FAILURE
  */
-void execute_instructions(FILE *file, stack_t **stack, instruction_t *instructions)
+void execute_instructions(FILE *file, stack_t **stack, instruction_t *ins)
 {
 	char *line = NULL, *opcode;
 	size_t len = 0;
-	unsigned int line_number = 0;
+	unsigned int num = 0;
 	int i;
 
 	while (getline(&line, &len, file) != -1)
 	{
-		line_number++;
+		num++;
 		opcode = strtok(line, " \t\n");
 		if (!opcode)
 			continue;
 
-		for (i = 0; instructions[i].opcode != NULL; i++)
+		for (i = 0; ins[i].opcode != NULL; i++)
 		{
-			if (strcmp(opcode, instructions[i].opcode) == 0)
+			if (strcmp(opcode, ins[i].opcode) == 0)
 			{
-				instructions[i].f(stack, line_number);
+				ins[i].f(stack, num);
 				break;
 			}
 		}
 
-		if (!instructions[i].opcode)
+		if (!ins[i].opcode)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+			fprintf(stderr, "L%d: unknown instruction %s\n", num, opcode);
 			fclose(file);
 			free(line);
 			exit(EXIT_FAILURE);
